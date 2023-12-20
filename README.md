@@ -3,10 +3,10 @@
 ## SETUP
 
 Topologi:
-![Alt text]()
+![Alt text](foto/topologi.png)
 
 Pembagian IP:
-![Alt text]()
+![Alt text](foto/pembagiIP.png)
 
 ### DHCP
 
@@ -31,7 +31,7 @@ Setelah itu dilakukan konfigurasi menggunakan iptables berikut:
 ```
 iptables -t nat -A POSTROUTING -o eth0 -j SNAT --to-source $ETH0_IP
 ```
-![Alt text]()
+![Alt text](foto/proof1.png)
 
 
 
@@ -54,7 +54,8 @@ iptables -A INPUT -p tcp -j DROP
 iptables -A INPUT -p udp -j DROP
 
 ```
-![Alt text]()
+![Alt text](foto/proof2.1.png)
+![Alt text](foto/proof2.png)
 
 
 ### 3
@@ -65,8 +66,8 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --connlimit-mask 0 -j DROP
 
 ```
-![Alt text]()
-
+![Alt text](foto/proof3.png)
+![Alt text](foto/proof3.2.png)
 
 ### 4
 Lakukan pembatasan sehingga koneksi SSH pada Web Server hanya dapat dilakukan oleh masyarakat yang berada pada GrobeForest.
@@ -75,7 +76,8 @@ iptables -A INPUT -p tcp --dport 22 -s 192.189.8.0/22 -j ACCEPT
 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
-![Alt text]()
+![Alt text](foto/proof4.png)
+![Alt text](foto/proof4.2.png)
 
 
 ### 5
@@ -85,7 +87,7 @@ iptables -A INPUT -p tcp --dport 22 -s 192.189.8.0/22 -m time --timestart 08:00 
 
 iptables -A INPUT -p tcp --dport 22 -j DROP
 ```
-![Alt text]()
+![Alt text](foto/proof56.png)
 
 
 ### 6
@@ -95,7 +97,7 @@ iptables -A INPUT -p tcp --dport 22 -s 192.189.8.0/22 -m time --timestart 12:00 
 
 iptables -A INPUT -p tcp --dport 22 -s 192.189.8.0/22 -m time --timestart 11:00 --timestop 13:00 --weekdays Fri -j DROP
 ```
-![Alt text]()
+![Alt text](foto/proof56.png)
 
 
 ### 7 - https://scalingo.com/blog/iptables
